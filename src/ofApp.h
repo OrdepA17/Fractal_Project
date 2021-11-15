@@ -1,5 +1,6 @@
 #pragma once
 #include<cmath>
+#include <vector>
 
 #include "ofMain.h"
 
@@ -23,6 +24,9 @@ class ofApp : public ofBaseApp{
 		void windowResized(int w, int h);
 		void dragEvent(ofDragInfo dragInfo);
 		void gotMessage(ofMessage msg);
+		void Color(vector<vector<float>> Colorlist);
+
+		int levels = 0;
 	private:
 		char mode = '1';
 };

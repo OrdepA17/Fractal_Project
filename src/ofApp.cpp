@@ -21,21 +21,26 @@ void ofApp::draw()
     ofNoFill();
     if (mode == '1')
     {
-        drawMode1(ofGetWidth() / 2, ofGetHeight() / 2, 4);
+        drawMode1(ofGetWidth() / 2, ofGetHeight() / 2, 4+levels);
     }
     else if (mode == '2')
     {
-        drawMode2(200, 10, ofGetWidth() / 2, ofGetHeight() - 50, 30);
+        drawMode2(200, 10+levels, ofGetWidth() / 2, ofGetHeight() - 50, 30);
     }
     else if (mode == '3')
     {
-        drawMode3(ofGetWidth() / 3, 10, ofGetHeight() / 2, 10);
+        drawMode3(ofGetWidth() / 3, 10, ofGetHeight() / 2, 10+levels);
     }
 }
 void ofApp::drawMode1(int x, int y, int n)
 {
+
     if (n != 0)
     {
+        float red = ofRandom(255);
+        float green = ofRandom(255);
+        float blue = ofRandom(255);
+        ofSetColor(red,green,blue);
         ofDrawCircle(x, y, 100);
         drawMode1(x + 100, y, n - 1);
         drawMode1(x - 100, y, n - 1);
@@ -54,9 +59,25 @@ void ofApp::drawMode2(int length, int n, int x, int y, int d)
         int rightBranchX = x + length * cos(PI / 180 * d);
         int rightBranchY = middleY - length * sin(PI / 180 * d);
 
+        float red = ofRandom(255);
+        float green = ofRandom(255);
+        float blue = ofRandom(255);
+        ofSetColor(red,green,blue);
         ofDrawLine(x, y, x, y - length);
+        red = ofRandom(255);
+        green = ofRandom(255);
+        blue = ofRandom(255);
+        ofSetColor(red,green,blue);
         ofDrawLine(x, y - length, x, y - length*2);
+        red = ofRandom(255);
+        green = ofRandom(255);
+        blue = ofRandom(255);
+        ofSetColor(red,green,blue);
         ofDrawLine(x, y - length, rightBranchX, rightBranchY);
+        red = ofRandom(255);
+        green = ofRandom(255);
+        blue = ofRandom(255);
+        ofSetColor(red,green,blue);
         ofDrawLine(x, y - length, leftBranchX, leftBranchY);
 
         drawMode2(length / 2, n - 1, rightBranchX, rightBranchY, 30);
@@ -76,11 +97,16 @@ void ofApp::drawMode3(float x, float y, float size, int n)
     ofPoint b(x + size, y);
     ofPoint c(x + size / 2, y + ((sqrt(3) * size) / 2));
 
+    float red = ofRandom(255);
+    float green = ofRandom(255);
+    float blue = ofRandom(255);
+    ofSetColor(red,green,blue);
     ofDrawTriangle(a, b, c);
 
     drawMode3(x, y, size / 2, n - 1);
     drawMode3((a.x + b.x) / 2, (a.y + b.y) / 2, size / 2, n - 1);
 }
+
 
 //--------------------------------------------------------------
 void ofApp::keyPressed(int key)
@@ -101,6 +127,20 @@ void ofApp::keyPressed(int key)
         mode = '4';
         break;
     }
+    if(key == '-'){
+       levels--; 
+    }
+    if(key == '='){
+        levels++;
+    }
+}
+
+void ofApp::Color(vector<vector<float>> Colorlist){
+    
+    float red = ofRandom(255);
+    float green = ofRandom(255);
+    float blue = ofRandom(255);
+    Colorlist.push_back({red,green,blue});
 }
 
 //--------------------------------------------------------------
