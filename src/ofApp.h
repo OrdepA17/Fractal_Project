@@ -27,6 +27,9 @@ class ofApp : public ofBaseApp{
 		void Color(vector<vector<float>> Colorlist);
 
 		int levels = 0;
+		bool active1= true;
+		bool active2= false;
+		bool active3= false;
 	private:
 		char mode = '1';
 };
