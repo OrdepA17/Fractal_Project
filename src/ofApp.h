@@ -30,6 +30,9 @@ class ofApp : public ofBaseApp{
 		bool active1= true;
 		bool active2= false;
 		bool active3= false;
+		int red=0;
+        int green=0; 
+        int blue=0;
 	private:
 		char mode = '1';
 };
