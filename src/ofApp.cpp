@@ -3,6 +3,11 @@
 //--------------------------------------------------------------
 void ofApp::setup()
 {
+    Fractal.push_back(new drawMode1());
+    Fractal.push_back(new drawMode2());
+    Fractal.push_back(new drawMode3());
+    
+    ofSetColor(ofRandom(255),ofRandom(255),ofRandom(255));
 }
 
 //--------------------------------------------------------------
@@ -19,94 +24,16 @@ void ofApp::draw()
     /* The update method is called muliple times per second
     It's in charge of drawing all figures and text on screen */
     ofNoFill();
-    if (mode == '1')
-    {
-        drawMode1(ofGetWidth() / 2, ofGetHeight() / 2, 4+levels);
+    if(Fractal[0]->getActivate()){
+        Fractal[0]->draw(ofGetWidth()/2, ofGetHeight()/2,levels);
     }
-    else if (mode == '2')
-    {
-        drawMode2(200, 10+levels, ofGetWidth() / 2, ofGetHeight() - 50, 30);
+    if(Fractal[1]->getActivate()){
+        Fractal[1]->draw(ofGetWidth()/2,ofGetHeight()-50,levels);
     }
-    else if (mode == '3')
-    {
-        drawMode3(ofGetWidth() / 3, 10, ofGetHeight() / 2, 10+levels);
+    if(Fractal[2]->getActivate()){
+        Fractal[2]->draw(ofGetWidth()/3, ofGetHeight()/2,levels);
     }
 }
-void ofApp::drawMode1(int x, int y, int n)
-{
-
-    if (n != 0)
-    {
-        float red = ofRandom(255);
-        float green = ofRandom(255);
-        float blue = ofRandom(255);
-        ofSetColor(red,green,blue);
-        ofDrawCircle(x, y, 100);
-        drawMode1(x + 100, y, n - 1);
-        drawMode1(x - 100, y, n - 1);
-        drawMode1(x, y + 100, n - 1);
-        drawMode1(x, y - 100, n - 1);
-    }
-}
-void ofApp::drawMode2(int length, int n, int x, int y, int d)
-{
-    if (n != 0)
-    {
-        int middleX = x;
-        int middleY = y - length;
-        int leftBranchX = x - length * cos(PI / 180 * d);
-        int leftBranchY = middleY - length * sin(PI / 180 * d);
-        int rightBranchX = x + length * cos(PI / 180 * d);
-        int rightBranchY = middleY - length * sin(PI / 180 * d);
-
-        float red = ofRandom(255);
-        float green = ofRandom(255);
-        float blue = ofRandom(255);
-        ofSetColor(red,green,blue);
-        ofDrawLine(x, y, x, y - length);
-        red = ofRandom(255);
-        green = ofRandom(255);
-        blue = ofRandom(255);
-        ofSetColor(red,green,blue);
-        ofDrawLine(x, y - length, x, y - length*2);
-        red = ofRandom(255);
-        green = ofRandom(255);
-        blue = ofRandom(255);
-        ofSetColor(red,green,blue);
-        ofDrawLine(x, y - length, rightBranchX, rightBranchY);
-        red = ofRandom(255);
-        green = ofRandom(255);
-        blue = ofRandom(255);
-        ofSetColor(red,green,blue);
-        ofDrawLine(x, y - length, leftBranchX, leftBranchY);
-
-        drawMode2(length / 2, n - 1, rightBranchX, rightBranchY, 30);
-        drawMode2(length / 2, n - 1, middleX, middleY, 30);
-        drawMode2(length / 2, n - 1, leftBranchX, leftBranchY, 30);
-    }
-}
-
-void ofApp::drawMode3(float x, float y, float size, int n)
-{
-    if (n == 0)
-    {
-        return;
-    }
-
-    ofPoint a(x, y);
-    ofPoint b(x + size, y);
-    ofPoint c(x + size / 2, y + ((sqrt(3) * size) / 2));
-
-    float red = ofRandom(255);
-    float green = ofRandom(255);
-    float blue = ofRandom(255);
-    ofSetColor(red,green,blue);
-    ofDrawTriangle(a, b, c);
-
-    drawMode3(x, y, size / 2, n - 1);
-    drawMode3((a.x + b.x) / 2, (a.y + b.y) / 2, size / 2, n - 1);
-}
-
 
 //--------------------------------------------------------------
 void ofApp::keyPressed(int key)
@@ -115,33 +42,35 @@ void ofApp::keyPressed(int key)
     switch (key)
     {
     case '1':
-        mode = '1';
+        ofSetColor(ofRandom(255),ofRandom(255),ofRandom(255));
+        Fractal[0]->setActivate(!Fractal[0]->getActivate());
         break;
     case '2':
-        mode = '2';
+        ofSetColor(ofRandom(255),ofRandom(255),ofRandom(255));
+        Fractal[1]->setActivate(!Fractal[1]->getActivate());
         break;
     case '3':
-        mode = '3';
+        ofSetColor(ofRandom(255),ofRandom(255),ofRandom(255));
+        Fractal[2]->setActivate(!Fractal[2]->getActivate());
         break;
     case '4':
-        mode = '4';
+        
         break;
-    }
-    if(key == '-'){
+    case '-':
+        if(levels<0){
+            levels=0;
+            break;
+        }
        levels--; 
-    }
-    if(key == '='){
+       break;
+    case '=':
         levels++;
+        break;
+    
     }
 }
 
-void ofApp::Color(vector<vector<float>> Colorlist){
-    
-    float red = ofRandom(255);
-    float green = ofRandom(255);
-    float blue = ofRandom(255);
-    Colorlist.push_back({red,green,blue});
-}
+
 
 //--------------------------------------------------------------
 void ofApp::keyReleased(int key)

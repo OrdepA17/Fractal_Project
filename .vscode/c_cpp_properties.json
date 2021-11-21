@@ -8,7 +8,11 @@
                 "${workspaceFolder}/../../../libs/openFrameworks/utils/*",
                 "C:\\msys64\\mingw32\\include\\**",
                 "C:\\msys64\\mingw32\\i686-w64-mingw32",
-                "/usr/bin"
+                "/usr/bin",
+                "C:/Users/Public/ProjectFolder/libs/openFrameworks",
+                "C:/Users/Public/ProjectFolder/libs/tess2/include",
+                "C:/Users/Public/ProjectFolder/libs/openFrameworks/events",
+                "C:/Users/Public/ProjectFolder/libs/utf8/include"
             ],
             "defines": [
                 "_DEBUG",
