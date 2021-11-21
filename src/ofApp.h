@@ -26,7 +26,6 @@ class ofApp : public ofBaseApp{
 		void dragEvent(ofDragInfo dragInfo);
 		void gotMessage(ofMessage msg);
 
-
 		int levels = 10;
 	private:
 		char mode = '1';
