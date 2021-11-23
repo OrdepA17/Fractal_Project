@@ -26,7 +26,13 @@ class ofApp : public ofBaseApp{
 		void dragEvent(ofDragInfo dragInfo);
 		void gotMessage(ofMessage msg);
 
-		int levels = 10;
+		int levels = 3;
+		int timer;
+		bool replay = false;
+		bool looping = false;
+		int red;
+		int green;
+		int blue;
 	private:
 		char mode = '1';
 		vector<FractalMode*> Fractal;

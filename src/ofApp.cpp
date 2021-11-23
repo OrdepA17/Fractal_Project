@@ -6,8 +6,11 @@ void ofApp::setup()
     Fractal.push_back(new drawMode1());
     Fractal.push_back(new drawMode2());
     Fractal.push_back(new drawMode3());
+    Fractal.push_back(new DrawMode4());
     
-    ofSetColor(ofRandom(255),ofRandom(255),ofRandom(255));
+    red = 65;
+    green = 255;
+    blue = 0;
 }
 
 //--------------------------------------------------------------
@@ -16,6 +19,24 @@ void ofApp::update()
     /* The update method is called muliple times per second
     It's in charge of updating variables and the logic of our app */
     ofSetBackgroundColor(0, 0, 0);
+
+    if(replay == true){
+            timer ++;
+            if (timer == 30*3){
+        if(looping == false && levels!=6){
+                levels ++;
+                timer=0;
+            }
+            if(looping==true && levels!=0){
+                levels --;
+                timer=0;
+            }
+            if((looping == true && levels ==0) || (looping == false && levels == 6 )){
+                looping = !looping;
+            }
+        }
+
+    }
 }
 
 //--------------------------------------------------------------
@@ -25,13 +46,16 @@ void ofApp::draw()
     It's in charge of drawing all figures and text on screen */
     ofNoFill();
     if(Fractal[0]->getActivate()){
-        Fractal[0]->draw(ofGetWidth()/2, ofGetHeight()/2,levels);
+        Fractal[0]->draw(ofGetWidth()/2, ofGetHeight()/2,levels, red, green, blue);
     }
     if(Fractal[1]->getActivate()){
-        Fractal[1]->draw(ofGetWidth()/2,ofGetHeight()-50,levels);
+        Fractal[1]->draw(ofGetWidth()/2,ofGetHeight()-50,levels, red, green, blue);
     }
     if(Fractal[2]->getActivate()){
-        Fractal[2]->draw(ofGetWidth()/3, ofGetHeight()/2,levels);
+        Fractal[2]->draw(ofGetWidth()/3, ofGetHeight()/2,levels, red, green, blue);
+    }
+    if(Fractal[3]->getActivate()){
+        Fractal[3]->draw(ofGetWidth()/2, ofGetHeight()/2,levels, red, green, blue);
     }
 }
 
@@ -54,19 +78,31 @@ void ofApp::keyPressed(int key)
         Fractal[2]->setActivate(!Fractal[2]->getActivate());
         break;
     case '4':
-        
+        ofSetColor(ofRandom(255),ofRandom(255),ofRandom(255));
+         Fractal[3]->setActivate(!Fractal[3]->getActivate());
         break;
     case '-':
-        if(levels<0){
-            levels=0;
+        if(levels<=0){
             break;
         }
        levels--; 
        break;
     case '=':
+        if(levels>8){
+            break;
+        }
         levels++;
         break;
-    
+
+    case ' ':
+        levels = 0;
+        timer = 0;
+        replay = true;
+        break;
+
+    case 'c':
+        replay = false;
+        break;
     }
 }
 
