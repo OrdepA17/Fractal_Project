@@ -21,13 +21,13 @@ void drawMode2::componentstree(int length, int n, int x, int y, int d, int r, in
         ofDrawLine(x, y - length, leftBranchX, leftBranchY);
         ofSetColor(255, 255, 255);
 
-        componentstree(length / 2, n - 1, rightBranchX, rightBranchY, 30,  r + (n*5), g - (n*3), b + (n*4));
-        componentstree(length / 2, n - 1, middleX, middleY, 30, r + (n*12), g + (n*12), b - (n*4));
-        componentstree(length / 2, n - 1, leftBranchX, leftBranchY, 30, r - (n*1.8), g - (n*5.7), b + (n*4));
-        componentstree(200 / 3, n - 1, (ofGetWidth()/2)/1.7, (ofGetHeight()-50), 30, r + (n*5), g - (n*3), b + (n*4));
-        componentstree(200 / 3, n-1, (ofGetWidth()/2)*1.4, (ofGetHeight()-50), 30, r - (n*1.8), g - (n*5.7), b + (n*4));
-        componentstree(200/3, n-1, (ofGetWidth()/2)*1.4, (ofGetHeight()-50), 30, r , g , b );
-        componentstree(200/3, n-1, (ofGetWidth()/2)/1.7, (ofGetHeight()-50), 30, r , g , b );
+        componentstree(length / 2, n - 1, rightBranchX, rightBranchY, 30, r + (n * 10), g - (n * 5), b + (n * 10));
+        componentstree(length / 2, n - 1, middleX, middleY, 30, r + (n * 10), g - (n * 5), b + (n * 10));
+        componentstree(length / 2, n - 1, leftBranchX, leftBranchY, 30, r + (n * 10), g - (n * 5), b + (n * 10));
+        componentstree(200 / 3.5, n - 1, (ofGetWidth() / 2) / 1.7, (ofGetHeight() - 50), 30, r + (n * 10), g - (n * 5), b + (n * 10));
+        componentstree(200 / 3.5, n - 1, (ofGetWidth() / 2) * 1.4, (ofGetHeight() - 50), 30, r + (n * 10), g - (n * 5), b + (n * 10));
+        componentstree(200 / 3.5, n - 1, (ofGetWidth() / 2) * 1.4, (ofGetHeight() - 50), 30, r , g , b );
+        componentstree(200 / 3.5, n - 1, (ofGetWidth() / 2) / 1.7, (ofGetHeight() - 50), 30, r , g , b );
     }
 }
 

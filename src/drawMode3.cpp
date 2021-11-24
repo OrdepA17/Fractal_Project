@@ -1,7 +1,7 @@
 #include "drawMode3.h"
 
 void drawMode3::draw(int x, int y, int n, int r, int g, int bl){
-    componentstriangle(x, y, ofGetHeight()/2, n, r, g, bl);
+    componentstriangle(x, y-250, ofGetHeight()/2, n, r, g, bl);
 }
 
 void drawMode3::componentstriangle(float x, float y, float size, int n, int r, int g, int bl){
@@ -18,9 +18,9 @@ void drawMode3::componentstriangle(float x, float y, float size, int n, int r, i
     ofDrawTriangle(a, b, c);
     ofSetColor(255, 255, 255);
 
-    componentstriangle(x, y, size / 2, n - 1, r + (n*5), g - (n*3), bl + (n*4));
-    componentstriangle((a.x + b.x) / 2, (a.y + b.y) / 2, size / 2, n - 1, r + (n*5), g - (n*3), bl + (n*4));
-    componentstriangle((a.x + c.x) /2, (a.y + c.y) /2 , size / 2, n - 1,  r + (n*5), g - (n*3), bl+ (n*4));
+    componentstriangle(x, y, size / 2, n - 1, r + (n * 3), g - (n * 1.75), bl + (n * 6));
+    componentstriangle((a.x + b.x) / 2, (a.y + b.y) / 2, size / 2, n - 1, r + (n * 3), g - (n * 1.75), bl + (n * 6));
+    componentstriangle((a.x + c.x) /2, (a.y + c.y) /2 , size / 2, n - 1,  r + (n * 3), g - (n * 1.75), bl + (n * 6));
 }
 
 drawMode3::drawMode3(){

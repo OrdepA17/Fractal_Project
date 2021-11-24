@@ -20,7 +20,7 @@ void ofApp::update()
     It's in charge of updating variables and the logic of our app */
     ofSetBackgroundColor(0, 0, 0);
 
-    if(replay == true){
+    if(replay == true){ // causes animation to occur during set amount of time and wont go higher than 6 levels of recursion
             timer ++;
             if (timer == 30*3){
         if(looping == false && levels!=6){
@@ -81,26 +81,26 @@ void ofApp::keyPressed(int key)
         ofSetColor(ofRandom(255),ofRandom(255),ofRandom(255));
          Fractal[3]->setActivate(!Fractal[3]->getActivate());
         break;
-    case '-':
+    case '-': // reduces level of recursion
         if(levels<=0){
             break;
         }
        levels--; 
        break;
-    case '=':
-        if(levels>8){
+    case '=': // increases level of recursion to a maximum of 9 levels.
+        if(levels>9){
             break;
         }
         levels++;
         break;
 
-    case ' ':
+    case ' ': // starts animation of the different fractals
         levels = 0;
         timer = 0;
         replay = true;
         break;
 
-    case 'c':
+    case 'c': // stops animation 
         replay = false;
         break;
     }
